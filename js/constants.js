@@ -1,0 +1,11 @@
+let CANVAS_W = window.innerWidth;
+let CANVAS_H = window.innerHeight;
+let HALF     = CANVAS_H / 2;
+const GROUND        = 40;
+const GRAVITY       = 0.55;
+const JUMP_FORCE    = -13;   // to'siq balandligidan oshib o'tish uchun
+const SPEED_BASE    = 3.5;
+const SPEED_MAX     = 12.0;
+const ROPE_PULL     = 1.8;
+const ROPE_SEGMENTS = 16;
+const PLATFORMS = [];

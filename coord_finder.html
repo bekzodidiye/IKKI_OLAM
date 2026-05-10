@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<body>
+<canvas id="canvas"></canvas>
+<script>
+const img = new Image();
+img.crossOrigin = "anonymous";
+img.src = "file:///home/Bekzod/.gemini/antigravity/brain/68498c03-a1ab-462c-8855-82ef359a75fa/media__1778407855283.png";
+img.onload = () => {
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+    canvas.width = img.width;
+    canvas.height = img.height;
+    ctx.drawImage(img, 0, 0);
+    console.log("Image loaded: " + img.width + "x" + img.height);
+    // Print some pixels to help me guess coordinates
+};
+</script>
+</body>
+</html>

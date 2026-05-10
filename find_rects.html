@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<body>
+<canvas id="canvas"></canvas>
+<script>
+const img = new Image();
+img.crossOrigin = "anonymous";
+img.src = "assets/original_spritesheet.png";
+img.onload = () => {
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+    canvas.width = img.width;
+    canvas.height = img.height;
+    ctx.drawImage(img, 0, 0);
+    const data = ctx.getImageData(0, 0, img.width, img.height).data;
+    
+    // Background color roughly: 245, 241, 234
+    const isBg = (r, g, b) => (r > 240 && g > 235 && b > 225);
+    
+    // Find clusters
+    // ... just log some points to verify
+    console.log("Top left pixel:", data[0], data[1], data[2]);
+    console.log("Middle pixel:", data[canvas.width*canvas.height*2 + 0]);
+};
+</script>
+</body>
+</html>

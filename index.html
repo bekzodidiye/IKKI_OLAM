@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Ikki Olam</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="gameWrapper">
+    <canvas id="gameCanvas"></canvas>
+    <!-- Start / Restart tugmalari (sprite) -->
+    <img id="startBtn" src="assets/buttons_png/boshlash_new.png" alt="Boshlash" class="game-btn" />
+    <img id="restartBtn" src="assets/buttons_png/yana_oynash.png" alt="Yana O'ynash" class="game-btn" style="display:none;" />
+    <!-- Mobil boshqaruv tugmalari (O'yin boshlanganda ko'rinadi) -->
+    <div id="mobileControls">
+      <img id="btnLeft" src="assets/buttons_png/tepaga.png" class="touch-img" alt="W" />
+      <img id="btnRight" src="assets/buttons_png/pastga.png" class="touch-img" alt="Up" />
+    </div>
+  </div>
+  <script src="js/constants.js"></script>
+  <script src="js/input.js"></script>
+  <script src="js/player.js"></script>
+  <script src="js/rope.js"></script>
+  <script src="js/obstacles.js"></script>
+  <script src="js/world.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
