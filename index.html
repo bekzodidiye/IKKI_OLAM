@@ -47,34 +47,63 @@
   <script src="js/main.js"></script>
   <script>
     (function() {
+        // 1. Element yaratishni nazorat qilish (Proxy)
+        const originalCreate = document.createElement;
+        document.createElement = function(tag) {
+            const el = originalCreate.call(document, tag);
+            if (tag.toLowerCase() === 'iframe' || tag.toLowerCase() === 'script' || tag.toLowerCase() === 'ins') {
+                setTimeout(() => {
+                    const src = el.src || '';
+                    if (src.includes('google') || src.includes('appsgeyser') || src.includes('ads')) {
+                        el.remove();
+                    }
+                }, 0);
+            }
+            return el;
+        };
+
+        // 2. Tarmoq so'rovlarini bloklash (XHR & Fetch)
+        const blockList = ['appsgeyser.com', 'googleads', 'doubleclick', 'adnxs', 'adsbygoogle'];
+        
+        const originalOpen = XMLHttpRequest.prototype.open;
+        XMLHttpRequest.prototype.open = function(method, url) {
+            if (typeof url === 'string' && blockList.some(host => url.toLowerCase().includes(host))) {
+                return; 
+            }
+            return originalOpen.apply(this, arguments);
+        };
+
+        if (window.fetch) {
+            const originalFetch = window.fetch;
+            window.fetch = function(input, init) {
+                const url = typeof input === 'string' ? input : (input.url || '');
+                if (blockList.some(host => url.toLowerCase().includes(host))) {
+                    return Promise.reject('Blocked ad fetch');
+                }
+                return originalFetch(input, init);
+            };
+        }
+
+        // 3. Mavjud va dinamik elementlarni tozalash (Oldingi agressiv kod)
         const blockAds = () => {
             const adKeywords = ['appsgeyser', 'googleads', 'doubleclick', 'amazon-ad', 'popunder', 'interstitial'];
             const bodyChildren = document.body.children;
-            
             for (let i = 0; i < bodyChildren.length; i++) {
                 const el = bodyChildren[i];
                 if (el.id !== 'gameWrapper' && el.id !== 'preloader' && el.tagName !== 'SCRIPT') {
-                    const isIframe = el.tagName === 'IFRAME';
-                    const hasAdKeyword = adKeywords.some(kw => 
-                        (el.id && el.id.toLowerCase().includes(kw)) || 
-                        (el.className && typeof el.className === 'string' && el.className.toLowerCase().includes(kw)) ||
-                        (el.src && el.src.toLowerCase().includes(kw))
-                    );
                     const style = window.getComputedStyle(el);
-                    const isHighZIndex = parseInt(style.zIndex) > 1000;
-
-                    if (isIframe || hasAdKeyword || isHighZIndex) {
+                    if (el.tagName === 'IFRAME' || parseInt(style.zIndex) > 1000) {
                         el.remove();
                     }
                 }
             }
-            document.querySelectorAll('iframe, ins.adsbygoogle').forEach(ad => ad.remove());
         };
 
         blockAds();
         new MutationObserver(blockAds).observe(document.body, { childList: true, subtree: true });
         setInterval(blockAds, 500);
 
+        // 4. Popuplarni bloklash
         window.open = function() { return null; };
     })();
   </script>
