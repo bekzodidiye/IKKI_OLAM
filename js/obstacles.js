@@ -5,67 +5,69 @@ let obsTimer    = 0;
 let lastZone    = null;
 let obsInterval = 120;
 let lives       = 3;
-// ── Green to'siq rasmlari (22 ta, shaffof PNG) ─────────────────
-const greenObsImages = [];
+// To'siqlar ro'yxati (Barcha 43 ta rasmni qaytaramiz)
 const greenFileNames = [
-  "photo_1_2026-05-10_18-26-57.png",
-  "photo_2_2026-05-10_18-26-57.png",
-  "photo_3_2026-05-10_18-26-57.png",
-  "photo_4_2026-05-10_18-26-57.png",
-  "photo_5_2026-05-10_18-26-57.png",
-  "photo_6_2026-05-10_18-26-57.png",
-  "photo_7_2026-05-10_18-26-57.png",
-  "photo_8_2026-05-10_18-26-57.png",
-  "photo_9_2026-05-10_18-26-57.png",
-  "photo_10_2026-05-10_18-26-57.png",
-  "photo_12_2026-05-10_18-26-57.png",
-  "photo_13_2026-05-10_18-26-57.png",
-  "photo_14_2026-05-10_18-26-57.png",
-  "photo_15_2026-05-10_18-26-57.png",
-  "photo_16_2026-05-10_18-26-57.png",
-  "photo_17_2026-05-10_18-26-57.png",
-  "photo_18_2026-05-10_18-26-57.png",
-  "photo_20_2026-05-10_18-26-57.png",
-  "photo_21_2026-05-10_18-26-57.png",
-  "photo_22_2026-05-10_18-26-57.png",
-  "photo_23_2026-05-10_18-26-57.png",
-  "photo_24_2026-05-10_18-26-57.png",
+  "photo_1_2026-05-10_18-26-57.png", "photo_2_2026-05-10_18-26-57.png", "photo_3_2026-05-10_18-26-57.png", 
+  "photo_4_2026-05-10_18-26-57.png", "photo_5_2026-05-10_18-26-57.png", "photo_6_2026-05-10_18-26-57.png", 
+  "photo_7_2026-05-10_18-26-57.png", "photo_8_2026-05-10_18-26-57.png", "photo_9_2026-05-10_18-26-57.png", 
+  "photo_10_2026-05-10_18-26-57.png", "photo_12_2026-05-10_18-26-57.png", "photo_13_2026-05-10_18-26-57.png",
+  "photo_14_2026-05-10_18-26-57.png", "photo_15_2026-05-10_18-26-57.png", "photo_16_2026-05-10_18-26-57.png",
+  "photo_17_2026-05-10_18-26-57.png", "photo_18_2026-05-10_18-26-57.png", "photo_20_2026-05-10_18-26-57.png",
+  "photo_21_2026-05-10_18-26-57.png", "photo_22_2026-05-10_18-26-57.png", "photo_23_2026-05-10_18-26-57.png",
+  "photo_24_2026-05-10_18-26-57.png"
 ];
-for (const fn of greenFileNames) {
-  const img = _loader.add(new Image());
-  img.src = `assets/tosiq_green_png/${fn}`;
-  greenObsImages.push(img);
-}
-// ── Orange to'siq rasmlari (21 ta, shaffof PNG) ────────────────
-const orangeObsImages = [];
 const orangeFileNames = [
-  "photo_3_2026-05-10_18-24-19.png",
-  "photo_5_2026-05-10_18-24-19.png",
-  "photo_6_2026-05-10_18-24-19.png",
-  "photo_7_2026-05-10_18-24-19.png",
-  "photo_8_2026-05-10_18-24-19.png",
-  "photo_9_2026-05-10_18-24-19.png",
-  "photo_10_2026-05-10_18-24-19.png",
-  "photo_11_2026-05-10_18-24-19.png",
-  "photo_12_2026-05-10_18-24-19.png",
-  "photo_13_2026-05-10_18-24-19.png",
-  "photo_14_2026-05-10_18-24-19.png",
-  "photo_15_2026-05-10_18-24-19.png",
-  "photo_16_2026-05-10_18-24-19.png",
-  "photo_17_2026-05-10_18-24-19.png",
-  "photo_18_2026-05-10_18-24-19.png",
-  "photo_19_2026-05-10_18-24-19.png",
-  "photo_20_2026-05-10_18-24-19.png",
-  "photo_21_2026-05-10_18-24-19.png",
-  "photo_22_2026-05-10_18-24-19.png",
-  "photo_23_2026-05-10_18-24-19.png",
-  "photo_24_2026-05-10_18-24-19.png",
+  "photo_3_2026-05-10_18-24-19.png", "photo_5_2026-05-10_18-24-19.png", "photo_6_2026-05-10_18-24-19.png", 
+  "photo_7_2026-05-10_18-24-19.png", "photo_8_2026-05-10_18-24-19.png", "photo_9_2026-05-10_18-24-19.png", 
+  "photo_10_2026-05-10_18-24-19.png", "photo_11_2026-05-10_18-24-19.png", "photo_12_2026-05-10_18-24-19.png",
+  "photo_13_2026-05-10_18-24-19.png", "photo_14_2026-05-10_18-24-19.png", "photo_15_2026-05-10_18-24-19.png",
+  "photo_16_2026-05-10_18-24-19.png", "photo_17_2026-05-10_18-24-19.png", "photo_18_2026-05-10_18-24-19.png",
+  "photo_19_2026-05-10_18-24-19.png", "photo_20_2026-05-10_18-24-19.png", "photo_21_2026-05-10_18-24-19.png",
+  "photo_22_2026-05-10_18-24-19.png", "photo_23_2026-05-10_18-24-19.png", "photo_24_2026-05-10_18-24-19.png"
 ];
-for (const fn of orangeFileNames) {
-  const img = _loader.add(new Image());
-  img.src = `assets/tosiqlar_orange_png/${fn}`;
-  orangeObsImages.push(img);
+
+const greenObsImages = [];
+const orangeObsImages = [];
+
+// Aqlli yuklash: Dastlabki 8 tadan rasm o'yin boshlanishi uchun _loader orqali yuklanadi (blocking)
+// Qolganlari esa fonda (background) sekin yuklanib boradi.
+function initObstacleLoading() {
+  const PRIORITY_COUNT = 8;
+  
+  // Green Priority
+  greenFileNames.slice(0, PRIORITY_COUNT).forEach(fn => {
+    const img = _loader.add(new Image());
+    img.src = `assets/tosiq_green_png/${fn}`;
+    greenObsImages.push(img);
+  });
+  
+  // Orange Priority
+  orangeFileNames.slice(0, PRIORITY_COUNT).forEach(fn => {
+    const img = _loader.add(new Image());
+    img.src = `assets/tosiqlar_orange_png/${fn}`;
+    orangeObsImages.push(img);
+  });
+
+  // Background Loading (Fonda yuklash)
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      // Green Background
+      greenFileNames.slice(PRIORITY_COUNT).forEach(fn => {
+        const img = new Image();
+        img.src = `assets/tosiq_green_png/${fn}`;
+        img.onload = () => greenObsImages.push(img);
+      });
+      // Orange Background
+      orangeFileNames.slice(PRIORITY_COUNT).forEach(fn => {
+        const img = new Image();
+        img.src = `assets/tosiqlar_orange_png/${fn}`;
+        img.onload = () => orangeObsImages.push(img);
+      });
+    }, 2000); // O'yin boshlangandan 2 soniya keyin fonda yuklashni boshlaymiz
+  });
 }
+
+initObstacleLoading();
 function resetObstacles() {
   obstacles   = [];
   score       = 0;
@@ -119,6 +121,10 @@ function updateObstacles(players, speed, onGameOver) {
     if (p && rectsOverlap(p, o)) {
       if (p.invincible <= 0) {
         lives--;
+        if (window.sfxHurt) {
+          window.sfxHurt.currentTime = 0;
+          window.sfxHurt.play().catch(() => {});
+        }
         p.invincible = 90; // ~1.5 soniya faqat shu bolacha himoyada
         obstacles.splice(i, 1); // urilgan to'siqni olib tashlash
         if (lives <= 0) { onGameOver(); return; }

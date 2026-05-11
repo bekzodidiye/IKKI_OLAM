@@ -2,8 +2,8 @@ const hud = {
   muted:  false,
   paused: false,
   buttons: {
-    mute:  { x: 0, y: 10, w: 40, h: 40 },   // Dinamik — o'ng tomonga
-    pause: { x: 0, y: 10, w: 40, h: 40 },   // Dinamik — o'ng tomonga
+    mute:  { x: 0, y: 50, w: 40, h: 40 },   // Dinamik — o'ng tomonga
+    pause: { x: 0, y: 50, w: 40, h: 40 },   // Dinamik — o'ng tomonga
   },
 };
 // HUD tugma sprite'lari
@@ -12,11 +12,16 @@ const btnSoundOff = _loader.add(new Image()); btnSoundOff.src = "assets/buttons_
 const btnPause    = _loader.add(new Image()); btnPause.src    = "assets/buttons_png/pause.png";
 const btnResume   = _loader.add(new Image()); btnResume.src   = "assets/buttons_png/resume.png";
 const btnLogo     = _loader.add(new Image()); btnLogo.src     = "assets/buttons_png/ikki_olam.png";
-// Fon musiqasi
-const bgMusic = _loader.add(new Audio("assets/music/Funny Song _ Comedic Background Music _ Silly Chicken.mp3"));
+// Fon musiqasi (backgroundda yuklanadi, o'yin boshlanishini to'sib qo'ymaydi)
+const bgMusic = new Audio("assets/music/Walen - Gameboy (freetouse.com).mp3");
 bgMusic.loop = true;
 bgMusic.preload = "auto";
 window.bgMusic = bgMusic;
+
+// Effektlar
+window.sfxJump = new Audio("assets/music/edr-8-bit-jump-001-171817.mp3");
+window.sfxHurt = new Audio("assets/music/hurt.mp3");
+window.sfxOver = new Audio("assets/music/alphix-game-over-417465.mp3");
 function initHUD(canvas) {
   canvas.addEventListener("click", e => {
     if (window._gameState !== "playing") return;
@@ -72,18 +77,18 @@ function drawHUD(ctx, gameSpeed) {
   ctx.shadowColor = "#ffd700"; ctx.shadowBlur = 10;
   ctx.fillStyle = "#ffd700";
   ctx.font = "bold 18px 'Share Tech Mono', monospace";
-  ctx.fillText(`⚔ ${score}`, 115, 30);
+  ctx.fillText(`⚔ ${score}`, 115, 70);
   // Best
   ctx.shadowBlur = 0;
   ctx.fillStyle = "#c0a06088";
   ctx.font = "12px 'Share Tech Mono', monospace";
-  ctx.fillText(`🏆 ${highScore}`, 190, 30);
+  ctx.fillText(`🏆 ${highScore}`, 190, 70);
   // Jonlar (yuraklar) — CHAP tomonda
   ctx.shadowColor = "#ff2222"; ctx.shadowBlur = 8;
   ctx.font = "20px sans-serif";
   for (let i = 0; i < 3; i++) {
     ctx.fillStyle = i < lives ? "#ff3333" : "#33333366";
-    ctx.fillText("♥", 10 + i * 24, 30);
+    ctx.fillText("♥", 10 + i * 24, 70);
   }
   ctx.restore();
   // Boshqaruv matni
@@ -93,7 +98,7 @@ function drawHUD(ctx, gameSpeed) {
   ctx.restore();
 }
 function drawSpeedMeter(ctx, speed) {
-  const x = 10, y = 55, w = 8, maxH = 80;
+  const x = 10, y = 95, w = 8, maxH = 80;
   const ratio = Math.min((speed - SPEED_BASE) / (SPEED_MAX - SPEED_BASE), 1);
   const fillH = ratio * maxH;
   ctx.save();

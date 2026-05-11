@@ -56,6 +56,10 @@ function onGameOver() {
   restartBtn.style.display = "block";
   if (mobileControls) mobileControls.classList.remove("show");
   if (window.bgMusic) window.bgMusic.pause();
+  if (window.sfxOver) {
+    window.sfxOver.currentTime = 0;
+    window.sfxOver.play().catch(() => {});
+  }
 }
 // Tezlik: har 5 scoredan keyin oshadi
 function updateSpeed() {

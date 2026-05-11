@@ -26,6 +26,10 @@ function updatePlayer(p, gameSpeed) {
   if (keys[p.jumpKey] && p.onGround) {
     p.vy = -13; 
     p.onGround = false;
+    if (window.sfxJump) {
+      window.sfxJump.currentTime = 0;
+      window.sfxJump.play().catch(() => {});
+    }
   }
   p.vy += GRAVITY; 
   p._y += p.vy;
