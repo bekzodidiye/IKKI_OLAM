@@ -132,3 +132,18 @@ canvas {
     display: block;
   }
 }
+
+/* Ad Blocking for AppsGeyser */
+iframe[src*="appsgeyser"], 
+div[class*="appsgeyser"], 
+div[id*="appsgeyser"],
+.adsbygoogle, .ad-zone, .ad-space,
+[id^="div-gpt-ad"], [id*="banner-ad"] {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    height: 0 !important;
+    width: 0 !important;
+    position: absolute !important;
+    top: -1000px !important;
+}

@@ -45,5 +45,24 @@
   <script src="js/world.js"></script>
   <script src="js/ui.js"></script>
   <script src="js/main.js"></script>
+  <script>
+    (function() {
+        const blockAds = () => {
+            const ads = document.querySelectorAll('iframe, div, ins');
+            ads.forEach(ad => {
+                const src = ad.src || '';
+                const id = ad.id || '';
+                const cls = ad.className || '';
+                if (src.includes('appsgeyser') || id.includes('appsgeyser') || cls.includes('appsgeyser')) {
+                    ad.remove();
+                }
+            });
+        };
+        blockAds();
+        const observer = new MutationObserver(blockAds);
+        observer.observe(document.body, { childList: true, subtree: true });
+        setInterval(blockAds, 1000);
+    })();
+  </script>
 </body>
 </html>
