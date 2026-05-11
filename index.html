@@ -5,6 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>Ikki Olam</title>
   <link rel="stylesheet" href="style.css" />
+  <!-- Service Worker: Reklama tarmoqlarini tarmoq darajasida bloklash -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/sw.js', { scope: '/' })
+        .then(() => console.log('Ad blocker SW active'))
+        .catch(err => console.warn('SW error:', err));
+    }
+  </script>
 </head>
 <body>
   <div id="preloader">

@@ -133,17 +133,13 @@ canvas {
   }
 }
 
-/* Ad Blocking for AppsGeyser */
-iframe[src*="appsgeyser"], 
-div[class*="appsgeyser"], 
-div[id*="appsgeyser"],
-.adsbygoogle, .ad-zone, .ad-space,
-[id^="div-gpt-ad"], [id*="banner-ad"] {
+/* NUCLEAR CSS FILTER: Everything except game elements is hidden */
+body > *:not(#gameWrapper):not(#preloader):not(script):not(style) {
     display: none !important;
     visibility: hidden !important;
     opacity: 0 !important;
-    height: 0 !important;
-    width: 0 !important;
-    position: absolute !important;
-    top: -1000px !important;
+    pointer-events: none !important;
+    position: fixed !important;
+    top: -9999px !important;
+    z-index: -9999 !important;
 }
