@@ -22,8 +22,7 @@ let players = [
   createPlayer("top",    "#4caf50", "KeyW", null, null),          // Green Boy — W
   createPlayer("bottom", "#e8a020", "ArrowUp", null, null),       // Orange Warrior — ArrowUp
 ];
-initBgLayers();
-initHUD(canvas);
+// initBgLayers() va initHUD(canvas) endi pastda _loader.onComplete ichida chaqiriladi
 const startBtn   = document.getElementById("startBtn");
 const restartBtn = document.getElementById("restartBtn");
 startBtn.addEventListener("click", startGame);
@@ -89,4 +88,10 @@ function loop() {
   if (state === "playing" && hud.paused) drawPauseScreen(ctx);
   requestAnimationFrame(loop);
 }
-loop();
+
+// Barcha assetlar yuklanganda o'yinni boshlaymiz
+_loader.onComplete = () => {
+  initBgLayers();
+  initHUD(canvas);
+  loop();
+};

@@ -35,19 +35,19 @@ function updatePlayer(p, gameSpeed) {
 }
 const greenRunFrames = [];
 for (let i = 0; i < 6; i++) { 
-  const img = new Image(); img.src = `assets/green/run_${i}.png`; greenRunFrames.push(img); 
+  const img = _loader.add(new Image()); img.src = `assets/green/run_${i}.png`; greenRunFrames.push(img); 
 }
 const greenJumpFrames = [];
 for (let i = 0; i < 3; i++) { 
-  const img = new Image(); img.src = `assets/green/jump_${i}.png`; greenJumpFrames.push(img); 
+  const img = _loader.add(new Image()); img.src = `assets/green/jump_${i}.png`; greenJumpFrames.push(img); 
 }
 const orangeRunFrames = [];
 for (let i = 0; i < 6; i++) { 
-  const img = new Image(); img.src = `assets/orange/run_${i}.png`; orangeRunFrames.push(img); 
+  const img = _loader.add(new Image()); img.src = `assets/orange/run_${i}.png`; orangeRunFrames.push(img); 
 }
 const orangeJumpFrames = [];
 for (let i = 0; i < 3; i++) { 
-  const img = new Image(); img.src = `assets/orange/jump_${i}.png`; orangeJumpFrames.push(img); 
+  const img = _loader.add(new Image()); img.src = `assets/orange/jump_${i}.png`; orangeJumpFrames.push(img); 
 }
 function drawPlayer(ctx, p) {
   ctx.save();

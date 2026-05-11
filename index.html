@@ -7,6 +7,15 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <div id="preloader">
+    <div class="loader-content">
+      <div class="loader-logo">IKKI OLAM</div>
+      <div class="loader-bar-container">
+        <div id="loaderBar" class="loader-bar"></div>
+      </div>
+      <div id="loaderText" class="loader-text">Yuklanmoqda... 0%</div>
+    </div>
+  </div>
   <div id="gameWrapper">
     <canvas id="gameCanvas"></canvas>
     <!-- Start / Restart tugmalari (sprite) -->
@@ -18,6 +27,16 @@
       <img id="btnRight" src="assets/buttons_png/pastga.png" class="touch-img" alt="Up" />
     </div>
   </div>
+  <script src="js/loader.js"></script>
+  <script>
+    // HTML dagi rasmlarni ham track qilamiz
+    window.addEventListener('DOMContentLoaded', () => {
+      const images = document.querySelectorAll('img.game-btn, img.touch-img');
+      images.forEach(img => {
+        if (window._loader) window._loader.add(img);
+      });
+    });
+  </script>
   <script src="js/constants.js"></script>
   <script src="js/input.js"></script>
   <script src="js/player.js"></script>

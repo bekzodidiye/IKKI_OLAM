@@ -7,13 +7,13 @@ const hud = {
   },
 };
 // HUD tugma sprite'lari
-const btnSoundOn  = new Image(); btnSoundOn.src  = "assets/buttons_png/sound_on.png";
-const btnSoundOff = new Image(); btnSoundOff.src = "assets/buttons_png/sound_off.png";
-const btnPause    = new Image(); btnPause.src    = "assets/buttons_png/pause.png";
-const btnResume   = new Image(); btnResume.src   = "assets/buttons_png/resume.png";
-const btnLogo     = new Image(); btnLogo.src     = "assets/buttons_png/ikki_olam.png";
+const btnSoundOn  = _loader.add(new Image()); btnSoundOn.src  = "assets/buttons_png/sound_on.png";
+const btnSoundOff = _loader.add(new Image()); btnSoundOff.src = "assets/buttons_png/sound_off.png";
+const btnPause    = _loader.add(new Image()); btnPause.src    = "assets/buttons_png/pause.png";
+const btnResume   = _loader.add(new Image()); btnResume.src   = "assets/buttons_png/resume.png";
+const btnLogo     = _loader.add(new Image()); btnLogo.src     = "assets/buttons_png/ikki_olam.png";
 // Fon musiqasi
-const bgMusic = new Audio("assets/music/Funny Song _ Comedic Background Music _ Silly Chicken.mp3");
+const bgMusic = _loader.add(new Audio("assets/music/Funny Song _ Comedic Background Music _ Silly Chicken.mp3"));
 bgMusic.loop = true;
 bgMusic.preload = "auto";
 window.bgMusic = bgMusic;

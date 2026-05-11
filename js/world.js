@@ -1,10 +1,10 @@
-const greenBg1 = new Image(); greenBg1.src = "assets/background/scene.jpg";
-const greenBg2 = new Image(); greenBg2.src = "assets/background/scene2.jpg";
-const greenBg3 = new Image(); greenBg3.src = "assets/background/scene3.jpg";
-const orangeBg1 = new Image(); orangeBg1.src = "assets/background/orange_.jpg";
-const orangeBg2 = new Image(); orangeBg2.src = "assets/background/orange_2.jpg";
-const orangeBg3 = new Image(); orangeBg3.src = "assets/background/orange1.jpg";
-const groundTex = new Image(); groundTex.src = "assets/background/tosh.png";
+const greenBg1 = _loader.add(new Image()); greenBg1.src = "assets/background/scene.jpg";
+const greenBg2 = _loader.add(new Image()); greenBg2.src = "assets/background/scene2.jpg";
+const greenBg3 = _loader.add(new Image()); greenBg3.src = "assets/background/scene3.jpg";
+const orangeBg1 = _loader.add(new Image()); orangeBg1.src = "assets/background/orange_.jpg";
+const orangeBg2 = _loader.add(new Image()); orangeBg2.src = "assets/background/orange_2.jpg";
+const orangeBg3 = _loader.add(new Image()); orangeBg3.src = "assets/background/orange1.jpg";
+const groundTex = _loader.add(new Image()); groundTex.src = "assets/background/tosh.png";
 let bgOffset = 0;
 let groundOffset = 0;
 // ... (Rasmlar yuqorida yuklangan)

@@ -32,7 +32,7 @@ const greenFileNames = [
   "photo_24_2026-05-10_18-26-57.png",
 ];
 for (const fn of greenFileNames) {
-  const img = new Image();
+  const img = _loader.add(new Image());
   img.src = `assets/tosiq_green_png/${fn}`;
   greenObsImages.push(img);
 }
@@ -62,7 +62,7 @@ const orangeFileNames = [
   "photo_24_2026-05-10_18-24-19.png",
 ];
 for (const fn of orangeFileNames) {
-  const img = new Image();
+  const img = _loader.add(new Image());
   img.src = `assets/tosiqlar_orange_png/${fn}`;
   orangeObsImages.push(img);
 }
