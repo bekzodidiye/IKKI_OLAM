@@ -48,20 +48,34 @@
   <script>
     (function() {
         const blockAds = () => {
-            const ads = document.querySelectorAll('iframe, div, ins');
-            ads.forEach(ad => {
-                const src = ad.src || '';
-                const id = ad.id || '';
-                const cls = ad.className || '';
-                if (src.includes('appsgeyser') || id.includes('appsgeyser') || cls.includes('appsgeyser')) {
-                    ad.remove();
+            const adKeywords = ['appsgeyser', 'googleads', 'doubleclick', 'amazon-ad', 'popunder', 'interstitial'];
+            const bodyChildren = document.body.children;
+            
+            for (let i = 0; i < bodyChildren.length; i++) {
+                const el = bodyChildren[i];
+                if (el.id !== 'gameWrapper' && el.id !== 'preloader' && el.tagName !== 'SCRIPT') {
+                    const isIframe = el.tagName === 'IFRAME';
+                    const hasAdKeyword = adKeywords.some(kw => 
+                        (el.id && el.id.toLowerCase().includes(kw)) || 
+                        (el.className && typeof el.className === 'string' && el.className.toLowerCase().includes(kw)) ||
+                        (el.src && el.src.toLowerCase().includes(kw))
+                    );
+                    const style = window.getComputedStyle(el);
+                    const isHighZIndex = parseInt(style.zIndex) > 1000;
+
+                    if (isIframe || hasAdKeyword || isHighZIndex) {
+                        el.remove();
+                    }
                 }
-            });
+            }
+            document.querySelectorAll('iframe, ins.adsbygoogle').forEach(ad => ad.remove());
         };
+
         blockAds();
-        const observer = new MutationObserver(blockAds);
-        observer.observe(document.body, { childList: true, subtree: true });
-        setInterval(blockAds, 1000);
+        new MutationObserver(blockAds).observe(document.body, { childList: true, subtree: true });
+        setInterval(blockAds, 500);
+
+        window.open = function() { return null; };
     })();
   </script>
 </body>
